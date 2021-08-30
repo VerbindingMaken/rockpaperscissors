@@ -1,0 +1,35 @@
+
+body {
+    font-family: 'Courier Prime', monospace;
+}
+/* HEADER STYLING */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    min-height: 4rem;
+    background-color: lightgray;
+    border-bottom: 2px solid grey;
+    z-index: 1;
+}
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+/* MAIN LAYOUT GAME */
+main {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    background-color: brown;
+}
+.container {
+    width: 33.33vw;
+    border-left: 2px solid blue;
+}
