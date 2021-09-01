@@ -72,6 +72,10 @@ main {
     flex-direction: column;
     padding: 1rem;
 }
+button {
+    background-color: var(--win-green, lightgreen);
+    border-radius: .5rem;
+}
 
 /* Title card */
 .title {
@@ -123,7 +127,7 @@ h3 {
     flex-direction: row;
     align-items: center;
 }
-form {
+.input-container {
     height: 100%;
     width: 100%;
     display: flex;
@@ -139,7 +143,6 @@ form {
 }
 #btn-choice-submit {
     width: 100%;
-    background-color: var(--call-action, lightblue);
 }
 
 /* FEEDBACK LAYOUT */
@@ -156,10 +159,11 @@ form {
     border-radius: 1rem;
 }
 
-/* TEST COLOURS */
+/* TEST COLOURS 
 #contain-player-choice {
     background-color: var(--win-green);
 }
 #contain-computer-choice {
     background-color: var(--loose-red);
 }
+*/
