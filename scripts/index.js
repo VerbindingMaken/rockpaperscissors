@@ -4,15 +4,15 @@ const btnInpChoice = document.querySelector("#btn-choice-submit");
 const inputContainer = document.querySelector("#input-container");
 
 /* FEEDBACK */
-const feedback = document.querySelectorAll(".feedback");
+const feedbackCard = document.querySelector("#feedback-card");
+const explainResult = document.querySelector("#txt-explain-result");
+const winResult = document.querySelector("#txt-win-result");
 const btnPlayGame = document.querySelector("#btn-play-game");
+
 /* Start of game */
 function startGame() {
-    for(let i = 0; i < feedback.length; i++) {
-        console.log(i);
-        feedback[i].hidden = true;
-    }
-    inputContainer.hidden = false;
+    feedbackCard.style.display = "none";
+    inputContainer.style.display = "flex";
 }
 btnPlayGame.addEventListener('click', startGame);
 /* Receive input from player. Check input */
@@ -32,8 +32,7 @@ function checkPlayerChoice() {
             playerChoice = 3
             break;
         default:
-            console.log("Please type in: rock, paper or scissors");
-            break;
+            return showError();
       }
     // Hide input container 
     //return playerChoice;
@@ -43,3 +42,15 @@ function checkPlayerChoice() {
 btnInpChoice.addEventListener('click', checkPlayerChoice);
 
 /* Show message to player if input is wrong */
+function showError() {
+    explainResult.textContent = "You can only use one of these words: rock, paper, scissors";
+    btnPlayGame.style.display = "none";
+    winResult.textContent = "";
+    feedbackCard.style.display = "flex";
+    inpChoice.addEventListener('focus', removeError);
+}
+function removeError() {
+    feedbackCard.style.display = "none";
+    btnPlayGame.style.display = "block";
+    inpChoice.removeEventListener('focus', removeError);
+}

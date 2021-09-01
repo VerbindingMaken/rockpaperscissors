@@ -127,10 +127,10 @@ h3 {
     flex-direction: row;
     align-items: center;
 }
-.input-container {
+#input-container {
     height: 100%;
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-around;
 }
