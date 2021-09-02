@@ -4,10 +4,12 @@ const btnInpChoice = document.querySelector("#btn-choice-submit");
 const inputContainer = document.querySelector("#input-container");
 
 /* Player choice */
+const playerChoiceCard = document.querySelector("#player-choice-card");
 const playerChoicePicture = document.querySelector("#player-choice-picture");
 const playerChoiceWord = document.querySelector("#player-choice-word");
 
 /* Computer choice */
+const computerChoiceCard = document.querySelector("#computer-choice-card")
 const computerChoicePicture = document.querySelector("#computer-choice-picture");
 const computerChoiceWord = document.querySelector("#computer-choice-word");
 
@@ -40,6 +42,10 @@ var options = [{
 function startGame() {
     feedbackCard.style.display = "none";
     inputContainer.style.display = "flex";
+    playerChoiceCard.style.border = "none";
+    computerChoiceCard.style.border = "none";
+    showPlayerChoice(0);
+    showComputerChoice(0);
 }
 btnPlayGame.addEventListener('click', startGame);
 /* Receive input from player. Check input */
@@ -64,7 +70,7 @@ function checkPlayerChoice() {
     // Hide input container 
     //return playerChoice;
     console.log(playerChoice);
-    if(playerChoice) { inputContainer.hidden = true };
+    if(playerChoice) { inputContainer.style.display = "none"};
 }
 btnInpChoice.addEventListener('click', checkPlayerChoice);
 
@@ -89,7 +95,7 @@ function makeRndChoice() {
     console.log(computerChoice);
 }
 
-/* Show player choice with picture and word */
+/* Show player choice and computer choice with picture and word */
 function showPlayerChoice(choiceNumber) {
     playerChoicePicture.src = options[choiceNumber].src;
     playerChoicePicture.alt = options[choiceNumber].alt;
@@ -101,4 +107,39 @@ function showComputerChoice(choiceNumber) {
     computerChoicePicture.alt = options[choiceNumber].alt;
     computerChoicePicture.href = options[choiceNumber].href;
     computerChoiceWord.textContent = options[choiceNumber].name;
+}
+/* Show the result of the game: who won? */
+function showWinner(p, c) {
+    winResult.textContent = "You've won this game!"
+    playerChoiceCard.style.border = "solid 6px var(--win-green)";
+    computerChoiceCard.style.border = "solid 6px var(--loose-red)";
+    if (p === 1 && c === 2) {
+        explainResult.textContent = "Paper covers rock";
+        winResult.textContent = "The computer has won this time";
+        playerChoiceCard.style.border = "solid 6px var(--loose-red)";
+        computerChoiceCard.style.border = "solid 6px var(--win-green)";
+    } else if (p === 1 && c === 3) {
+        explainResult.textContent = "Rock crushes scissors"
+    } else if (p === 2 && c === 1) {
+        explainResult.textContent = "Paper covers rock";
+    } else if (p === 2 && c === 3) {
+        explainResult.textContent = "Scissors cuts paper";
+        winResult.textContent = "The computer has won this time";
+        playerChoiceCard.style.border = "solid 6px var(--loose-red)";
+        computerChoiceCard.style.border = "solid 6px var(--win-green)";
+    } else if (p === 3 && c === 1) {
+        explainResult.textContent = "Rock crushes scissors"
+        winResult.textContent = "The computer has won this time";
+        playerChoiceCard.style.border = "solid 6px var(--loose-red)";
+        computerChoiceCard.style.border = "solid 6px var(--win-green)";
+    } else if (p === 3 && c === 2) {
+        explainResult.textContent = "Scissors cuts paper";
+    } else {
+        explainResult.textContent = "It's a draw";
+        winResult.textContent = "Play again";
+        playerChoiceCard.style.border = "solid 6px var(--draw-yellow)";
+        computerChoiceCard.style.border = "solid 6px var(--draw-yellow)";
+    }
+    btnPlayGame.style.display = "block";
+    feedbackCard.style.display = "flex";
 }
