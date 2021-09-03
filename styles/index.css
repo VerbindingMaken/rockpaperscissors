@@ -22,6 +22,9 @@ html {
 /* HEADER STYLING */
 header {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -30,12 +33,46 @@ header {
     background-color: lightgray;
     border-bottom: 2px solid grey;
     z-index: 1;
+    padding: 1.67vw;
 }
-h1 {
-    text-align: center;
+header h1 {
     font-size: 2.8rem;
     font-weight: 700;
 }
+header nav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    height: 10vh;
+    padding: 0 calc(5vw / 3);
+}
+#hide-explain-rules {
+    background-color: white;
+}
+header nav a {
+    color: #444;
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header nav span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4rem;
+    min-height: 4rem;
+    border-radius: .5rem;
+    border: solid 4px var(--win-green);
+    margin-left: 2rem;
+}
+nav a:hover {
+    text-decoration: none;
+}
+
 p,
 label,
 input,
@@ -56,6 +93,7 @@ a {
 	text-decoration: none;
 }
 a:hover {
+    color: var(--win-green);
     text-decoration: underline var(--win-green);
 }
 /* MAIN LAYOUT GAME */
@@ -194,6 +232,7 @@ h3 {
     border-radius: 1rem;
     padding: 1rem;
 }
+
 
 /* TEST COLOURS 
 #contain-player-choice {
