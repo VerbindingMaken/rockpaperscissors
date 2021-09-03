@@ -48,17 +48,13 @@ var options = [{
 /* Start of game */
 function startGame() {
     feedbackCard.style.display = "none";
-    btnInpChoice.addEventListener('click', checkPlayerChoice);
-    document.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-          return checkPlayerChoice();
-        }
-    });
     inputContainer.style.display = "flex";
     playerChoiceCard.style.border = "none";
     computerChoiceCard.style.border = "none";
     showPlayerChoice(0);
     showComputerChoice(0);
+    //Use form so "Enter" wil start game
+    btnInpChoice.addEventListener('click', checkPlayerChoice);
 }
 btnPlayGame.addEventListener('click', startGame);
 /* Receive input from player. Check input */
@@ -78,16 +74,20 @@ function checkPlayerChoice() {
             playerChoice = 3
             break;
         default:
-            return showError();
+            showError();
+            break;
       }
     // Hide input container 
     //return playerChoice;
-    inputContainer.style.display = "none";
-    btnInpChoice.removeEventListener('click', checkPlayerChoice);
-    let computerChoice = makeRndChoice();
-    showComputerChoice(computerChoice);
-    showPlayerChoice(playerChoice);
-    setTimeout(showWinner, 1500, playerChoice, computerChoice);
+    if (playerChoice) {
+        inputContainer.style.display = "none";
+        btnInpChoice.removeEventListener('click', checkPlayerChoice);
+        let computerChoice = makeRndChoice();
+        showComputerChoice(computerChoice);
+        showPlayerChoice(playerChoice);
+        setTimeout(showWinner, 1500, playerChoice, computerChoice);
+    }
+    
 }
 
 /* Show message to player if input is wrong */
@@ -168,4 +168,40 @@ function showWinner(p, c) {
     feedbackCard.style.display = "flex";
     playerShowScore.textContent = playerScore;
     computerShowScore.textContent = computerScore;
+    if (playerScore + computerScore >= 5) {
+        return setTimeout(endGame, 1500);
+    }
+}
+function endGame() {
+    explainResult.textContent = `You score ${playerScore} out of 5`
+    playerChoiceCard.style.border = "none";
+    computerChoiceCard.style.border = "none";
+    btnPlayGame.removeEventListener('click', startGame);
+    btnPlayGame.textContent = "Start over";
+    if (playerScore > computerScore) {
+        winResult.textContent = "You've won!!!";
+        playerShowScore.color = "var(--win-green)";
+        computerShowScore.color = "var(--loose-red)";
+    }
+    else {
+        //Computer has won: Show Loose message
+        winResult.textContent = "You've lost"
+        playerShowScore.style.color = "var(--loose-red)";
+        computerShowScore.style.color = "var(--win-green)";
+    }
+    //Button to reset the game: Start over
+    btnPlayGame.addEventListener('click', resetGame);
+}
+function resetGame() {
+    btnPlayGame.removeEventListener('click', resetGame);
+    playerScore = 0;
+    playerShowScore.textContent = "0";
+    computerScore = 0;
+    computerShowScore.textContent = "0";
+    playerShowScore.style.color = "#444";
+    computerShowScore.style.color = "#444";
+    explainResult.textContent = "Play the game: Rock, Paper, Scissors. You will play against te computer.";
+    winResult.textContent = "Best of 5!"
+    btnPlayGame.textContent = "Play the game";
+    btnPlayGame.addEventListener('click', startGame);
 }

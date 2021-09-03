@@ -43,6 +43,21 @@ button {
     font-size: 1.6rem;
     line-height: 1.5;
 }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+a {
+	color: var(--win-green);
+	text-decoration: none;
+}
+a:hover {
+    text-decoration: underline var(--win-green);
+}
 /* MAIN LAYOUT GAME */
 main {
     position: absolute;
@@ -60,6 +75,24 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+/* RULES Explenation LAYOUT */
+#explain-rules-containter {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    height: 90vh;
+    background-color: white;
+}
+.explain-rules-card {
+    width: 40%;
+    min-height: 60vh;
 }
 
 /* CONSOLE LAYOUT */
