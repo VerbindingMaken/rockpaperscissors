@@ -19,6 +19,13 @@ const explainResult = document.querySelector("#txt-explain-result");
 const winResult = document.querySelector("#txt-win-result");
 const btnPlayGame = document.querySelector("#btn-play-game");
 
+/* Keeping score */
+const playerShowScore = document.querySelector("#player-score");
+const computerShowScore = document.querySelector("#computer-score")
+
+var playerScore = 0;
+var computerScore = 0;
+
 var options = [{
     name: "",
     src: "images/3017955_examination_inquiry_interrogation_investigation_poll_icon.svg",
@@ -41,6 +48,12 @@ var options = [{
 /* Start of game */
 function startGame() {
     feedbackCard.style.display = "none";
+    btnInpChoice.addEventListener('click', checkPlayerChoice);
+    document.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          return checkPlayerChoice();
+        }
+    });
     inputContainer.style.display = "flex";
     playerChoiceCard.style.border = "none";
     computerChoiceCard.style.border = "none";
@@ -69,21 +82,26 @@ function checkPlayerChoice() {
       }
     // Hide input container 
     //return playerChoice;
-    console.log(playerChoice);
-    if(playerChoice) { inputContainer.style.display = "none"};
+    inputContainer.style.display = "none";
+    btnInpChoice.removeEventListener('click', checkPlayerChoice);
+    let computerChoice = makeRndChoice();
+    showComputerChoice(computerChoice);
+    showPlayerChoice(playerChoice);
+    setTimeout(showWinner, 1500, playerChoice, computerChoice);
 }
-btnInpChoice.addEventListener('click', checkPlayerChoice);
 
 /* Show message to player if input is wrong */
 function showError() {
     explainResult.textContent = "You can only use one of these words: rock, paper, scissors";
     btnPlayGame.style.display = "none";
     winResult.textContent = "";
+    feedbackCard.style.border = "solid 6px var(--loose-red)";
     feedbackCard.style.display = "flex";
     inpChoice.addEventListener('focus', removeError);
 }
 function removeError() {
     feedbackCard.style.display = "none";
+    feedbackCard.style.border = "none";
     btnPlayGame.style.display = "block";
     inpChoice.removeEventListener('focus', removeError);
 }
@@ -91,8 +109,8 @@ function removeError() {
 /* Make a random choice for the computer */
 
 function makeRndChoice() {
-    let computerChoice = Math.floor(Math.random() * 3) + 1;
-    console.log(computerChoice);
+    let rndChoice = Math.floor(Math.random() * 3) + 1;
+    return rndChoice;
 }
 
 /* Show player choice and computer choice with picture and word */
@@ -118,22 +136,28 @@ function showWinner(p, c) {
         winResult.textContent = "The computer has won this time";
         playerChoiceCard.style.border = "solid 6px var(--loose-red)";
         computerChoiceCard.style.border = "solid 6px var(--win-green)";
+        computerScore += 1;
     } else if (p === 1 && c === 3) {
-        explainResult.textContent = "Rock crushes scissors"
+        explainResult.textContent = "Rock crushes scissors";
+        playerScore += 1;
     } else if (p === 2 && c === 1) {
         explainResult.textContent = "Paper covers rock";
+        playerScore += 1;
     } else if (p === 2 && c === 3) {
         explainResult.textContent = "Scissors cuts paper";
         winResult.textContent = "The computer has won this time";
         playerChoiceCard.style.border = "solid 6px var(--loose-red)";
         computerChoiceCard.style.border = "solid 6px var(--win-green)";
+        computerScore += 1;
     } else if (p === 3 && c === 1) {
         explainResult.textContent = "Rock crushes scissors"
         winResult.textContent = "The computer has won this time";
         playerChoiceCard.style.border = "solid 6px var(--loose-red)";
         computerChoiceCard.style.border = "solid 6px var(--win-green)";
+        computerScore += 1;
     } else if (p === 3 && c === 2) {
         explainResult.textContent = "Scissors cuts paper";
+        playerScore += 1;
     } else {
         explainResult.textContent = "It's a draw";
         winResult.textContent = "Play again";
@@ -142,4 +166,6 @@ function showWinner(p, c) {
     }
     btnPlayGame.style.display = "block";
     feedbackCard.style.display = "flex";
+    playerShowScore.textContent = playerScore;
+    computerShowScore.textContent = computerScore;
 }
