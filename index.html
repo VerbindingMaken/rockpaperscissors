@@ -14,11 +14,27 @@
     <body>
         <header>
             <h1>Rock - Paper - Scissors</h1>
-            <nav id="show-explain-rules">
-                <a href="explainrules.html">How to play<span>i</span></a> 
-            </nav>
+            <button id="hide-explain-rules"><p>Go back<span>&lt</span></p></button>
+            <button id="show-explain-rules"><p>How to play<span>i</span></p></button>
         </header>
         <main>
+            <div id="explain-rules-containter">
+                <div class="explain-rules-card">
+                    <h2>You will play against the computer</h2>
+                    <p>You can choose one of these options:</p>
+                    <ul>
+                        <li>Rock</li>
+                        <li>Paper</li>
+                        <li>Scissors</li>
+                    </ul>
+                    <p>The computer will then make a random choice between: Rock, Paper, or Scissors</p>
+                    <p>Rock wins from scissors, but looses from paper. Paper wins from rock but looses from scissors. Scissors wins from paper but looses from rock</p>
+                    <p>Source: <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors" target="_blanc">Wikipedia.org</a></p>
+                </div>
+                <div class="explain-rules-card">
+                    <img src="images/20130903171826!Rock-paper-scissors.svg" href="https://upload.wikimedia.org/wikipedia/commons/archive/6/67/20130903171826%21Rock-paper-scissors.svg" alt="" width="100%">
+                </div>
+            </div>
             <div id="player" class="container">
                 <div id="player-console" class="console">
                     <div class="title">

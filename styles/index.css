@@ -39,27 +39,26 @@ header h1 {
     font-size: 2.8rem;
     font-weight: 700;
 }
-header nav {
+header button {
     position: fixed;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    background-color: #1fe0;
+    border: none;
     top: 0;
     right: 0;
     height: 10vh;
-    padding: 0 calc(5vw / 3);
+    padding: 0 calc(5vw / 3);   
 }
-#hide-explain-rules {
-    background-color: white;
-}
-header nav a {
+header button p {
     color: #444;
     font-size: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-header nav span {
+header button span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,14 +68,24 @@ header nav span {
     border: solid 4px var(--win-green);
     margin-left: 2rem;
 }
-nav a:hover {
-    text-decoration: none;
+header button p:hover {
+    color: var(--win-green);
+    cursor: grab;
 }
+#hide-explain-rules {
+    display: none;
+    z-index: 1;
+    background-color: white;
+    border-radius: 0;
+    padding-left: 6rem;
+}
+
 
 p,
 label,
 input,
 button {
+    font-family: 'Courier Prime', monospace;
     font-size: 1.6rem;
     line-height: 1.5;
 }
@@ -89,7 +98,6 @@ ul {
 }
 
 a {
-	color: var(--win-green);
 	text-decoration: none;
 }
 a:hover {
@@ -117,7 +125,7 @@ main {
 /* RULES Explenation LAYOUT */
 #explain-rules-containter {
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;

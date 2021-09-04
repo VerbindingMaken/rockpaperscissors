@@ -21,7 +21,23 @@ const btnPlayGame = document.querySelector("#btn-play-game");
 
 /* Keeping score */
 const playerShowScore = document.querySelector("#player-score");
-const computerShowScore = document.querySelector("#computer-score")
+const computerShowScore = document.querySelector("#computer-score");
+
+/* Explain rules */
+const btnShowExplain = document.querySelector("#show-explain-rules");
+const btnHideExplain = document.querySelector("#hide-explain-rules");
+const dialogExplainRules = document.querySelector("#explain-rules-containter");
+
+function showExplain() {
+    btnHideExplain.style.display = "flex";
+    dialogExplainRules.style.display = "flex";
+}
+function hideExplain() {
+    btnHideExplain.style.display = "none";
+    dialogExplainRules.style.display = "none";
+}
+btnShowExplain.addEventListener('click', showExplain);
+btnHideExplain.addEventListener('click', hideExplain);
 
 var playerScore = 0;
 var computerScore = 0;
