@@ -182,7 +182,7 @@ function showWinner(p, c) {
     }
     playerShowScore.textContent = playerScore;
     computerShowScore.textContent = computerScore;
-    if (playerScore + computerScore >= 1) {
+    if (playerScore + computerScore >= 5) {
         btnPlayGame.style.display = "none";
         feedbackCard.style.display = "flex";
         return setTimeout(endGame, 1500);

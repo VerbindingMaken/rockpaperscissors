@@ -151,7 +151,8 @@ main {
     flex-direction: column;
     padding: 1rem;
 }
-button {
+button,
+#btn-choice-submit {
     background-color: var(--win-green, lightgreen);
     border-radius: .5rem;
 }
