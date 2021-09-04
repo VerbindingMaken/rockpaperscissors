@@ -1,7 +1,7 @@
 /* PLAYER INPUT */
 const inpChoice = document.querySelector("#inp-choice");
 const btnInpChoice = document.querySelector("#btn-choice-submit");
-const inputContainer = document.querySelector("#input-container");
+const inputContainer = document.querySelector("#input");
 
 /* Player choice */
 const playerChoiceCard = document.querySelector("#player-choice-card");
@@ -74,7 +74,8 @@ function startGame() {
 }
 btnPlayGame.addEventListener('click', startGame);
 /* Receive input from player. Check input */
-function checkPlayerChoice() {
+function checkPlayerChoice(e) {
+    e.preventDefault()
     let playerInput = inpChoice.value;
     inpChoice.value = "";
     let playerText = playerInput.toLowerCase().trim();
@@ -121,14 +122,11 @@ function removeError() {
     btnPlayGame.style.display = "block";
     inpChoice.removeEventListener('focus', removeError);
 }
-
 /* Make a random choice for the computer */
-
 function makeRndChoice() {
     let rndChoice = Math.floor(Math.random() * 3) + 1;
     return rndChoice;
 }
-
 /* Show player choice and computer choice with picture and word */
 function showPlayerChoice(choiceNumber) {
     playerChoicePicture.src = options[choiceNumber].src;
