@@ -1,3 +1,5 @@
+/* Background */
+const mainBackground = document.getElementsByTagName("main");
 /* PLAYER INPUT */
 const inpChoice = document.querySelector("#inp-choice");
 const btnInpChoice = document.querySelector("#btn-choice-submit");
@@ -178,20 +180,24 @@ function showWinner(p, c) {
         playerChoiceCard.style.border = "solid 6px var(--draw-yellow)";
         computerChoiceCard.style.border = "solid 6px var(--draw-yellow)";
     }
-    btnPlayGame.style.display = "block";
-    feedbackCard.style.display = "flex";
     playerShowScore.textContent = playerScore;
     computerShowScore.textContent = computerScore;
-    if (playerScore + computerScore >= 5) {
+    if (playerScore + computerScore >= 1) {
+        btnPlayGame.style.display = "none";
+        feedbackCard.style.display = "flex";
         return setTimeout(endGame, 1500);
+    } else {
+        btnPlayGame.style.display = "block";
+        feedbackCard.style.display = "flex";
     }
 }
 function endGame() {
+    mainBackground[0].style.backgroundColor = "white";
     explainResult.textContent = `You score ${playerScore} out of 5`
     playerChoiceCard.style.border = "none";
     computerChoiceCard.style.border = "none";
     btnPlayGame.removeEventListener('click', startGame);
-    btnPlayGame.textContent = "Start over";
+    btnPlayGame.style.display = "none";
     if (playerScore > computerScore) {
         winResult.textContent = "You've won!!!";
         playerShowScore.color = "var(--win-green)";
@@ -204,10 +210,18 @@ function endGame() {
         computerShowScore.style.color = "var(--win-green)";
     }
     //Button to reset the game: Start over
+    setTimeout(showResetBtn, 4000);
+}
+function showResetBtn() {
+    btnPlayGame.textContent = "Start over";
+    btnPlayGame.style.display = "block";
     btnPlayGame.addEventListener('click', resetGame);
 }
+
 function resetGame() {
     btnPlayGame.removeEventListener('click', resetGame);
+    mainBackground[0].style.backgroundColor = "#efefef";
+
     playerScore = 0;
     playerShowScore.textContent = "0";
     computerScore = 0;
